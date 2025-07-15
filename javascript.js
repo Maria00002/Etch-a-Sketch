@@ -15,8 +15,8 @@ for (let i = 0; i < numberOfSquareByRow; i++) {
         sizeOfSquare = (screenWidth - 30 * 2)/numberOfSquare;
         
         square.style.cssText =`height: ${sizeOfSquare}px; width: ${sizeOfSquare}px; 
-        background-color: #555; border-style: solid; 
-        border-width: thin; box-sizing: border-box`;
+        background-color: white; border-style: solid; 
+        border: 1px solid; box-sizing: border-box`;
         container.appendChild(square);
         console.log(sizeOfSquare);
         // console.log(j);
