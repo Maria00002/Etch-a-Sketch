@@ -12,19 +12,12 @@ function createGrid(numberOfSquare,numberOfSquare) {
             background-color: white; border-style: solid; 
             border: 1px solid; box-sizing: border-box`;
             container.appendChild(square);
-            console.log("generating square");
+            // console.log("generating square");
             square.addEventListener("mouseover", (event) => {
                 square.style.backgroundColor = `${getRandomColor()}`;
             });
         }
-    }
-    let button = document.querySelector(".button");
-    button.addEventListener("click", function() {
-        let size = getGridSize();
-        if(size <= 100 && isNumber(size)) {
-            clearScreen();
-        }
-    });        
+    }  
 }
 
 function getRandomColor() {
@@ -38,10 +31,10 @@ function getRandomColor() {
 
 function getGridSize() {
     let input = prompt("please enter the number of squares for the new grid (max 100): ", "");
-    let size = Number(input);
-    return size;  
+    let output = Number(input);
+    return output;  
 }
-// .firstChild returns null if th enode has no children
+// .firstChild returns null if the node has no children
 function clearScreen() {    
     while (container.firstChild) {
         container.removeChild(container.firstChild);
@@ -52,11 +45,6 @@ function isNumber(value) {
     return typeof value === 'number' && !isNaN(value);
 }
 
-function runProgram() {
-    createGrid(16, 16);
-    // createGrid(2, 2);
-}
-
 function checkContainerHaveChildren() {
     if (container.firstChild) {
         console.log(container.childElementCount);
@@ -65,6 +53,21 @@ function checkContainerHaveChildren() {
         }
     }
 }
+
+
+function runProgram() {
+    createGrid(16, 16);
+    
+    let button = document.querySelector(".button");
+    button.addEventListener("click", function() {
+        let size = getGridSize();
+        if(size <= 100 && isNumber(size)) {
+            clearScreen();
+            createGrid(size,size);
+        }
+    });  
+}
+
 
 runProgram();
 
