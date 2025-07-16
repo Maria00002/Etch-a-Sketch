@@ -1,3 +1,5 @@
+
+
 #container {
     display: flex;
     flex-wrap: wrap;
@@ -6,4 +8,17 @@
     margin: 0;
     border: 0;
     border: 1px black;
+}
+
+.button {
+    background-color: white;
+    color: black;
+    border: 5px solid #008CBA;
+    padding: 16px 32px;
+    margin: 16px;
+    text-align: center;
+    font-size: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

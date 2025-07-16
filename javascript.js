@@ -1,54 +1,73 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const container = document.querySelector("#container");
-    const screenWidth = window.innerWidth;
-    console.log(screenWidth);
+const container = document.querySelector("#container");
+const screenWidth = window.innerWidth;
 
-    function createGrid(numberOfSquareByRow,numberOfSquareByColumn) {
-        for (let i = 0; i < numberOfSquareByRow; i++) {
-            for (let j = 0; j < numberOfSquareByColumn; j++) {
-                const square = document.createElement("div");
-                square.classList.toggle("square");
-                let sizeOfSquare;
-                sizeOfSquare = (screenWidth - 30 * 2)/numberOfSquareByColumn;
+function createGrid(numberOfSquare,numberOfSquare) {
+    for (let i = 0; i < numberOfSquare; i++) {
+        for (let j = 0; j < numberOfSquare; j++) {
+            const square = document.createElement("div");
+            square.classList.toggle("square");
+            let sizeOfSquare = (screenWidth - 30 * 2)/numberOfSquare;
                 
-                square.style.cssText =`height: ${sizeOfSquare}px; width: ${sizeOfSquare}px; 
-                background-color: white; border-style: solid; 
-                border: 1px solid; box-sizing: border-box`;
-                container.appendChild(square);
-                
-                square.addEventListener("mouseover", (event) => {
-                    square.style.backgroundColor = `${getRandomColor()}`;
-                });
-            }
-    }
-
-
-
-
-
-    
-
-}
-    // square.addEventListener("click", (event) => {
-    //     console.log("I have clicked");
-    //     // square.style.cssText = `background-color: ${getRandomColor};`;
-    //     square.style.cssText = `background-color: black;`;
-    // });
-
-
-
-    function getRandomColor() {
-        let letters = '0123456789ABCDEF';
-        let color = "#";
-        for (let i = 0; i < 6 ; i++) {
-            color += letters[Math.floor(Math.random()*16)];
+            square.style.cssText =`height: ${sizeOfSquare}px; width: ${sizeOfSquare}px; 
+            background-color: white; border-style: solid; 
+            border: 1px solid; box-sizing: border-box`;
+            container.appendChild(square);
+            console.log("generating square");
+            square.addEventListener("mouseover", (event) => {
+                square.style.backgroundColor = `${getRandomColor()}`;
+            });
         }
-        return color;
     }
+    let button = document.querySelector(".button");
+    button.addEventListener("click", function() {
+        let size = getGridSize();
+        if(size <= 100 && isNumber(size)) {
+            clearScreen();
+        }
+    });        
+}
 
-    createGrid(16,16);
+function getRandomColor() {
+    let letters = '0123456789ABCDEF';
+    let color = "#";
+    for (let i = 0; i < 6 ; i++) {
+        color += letters[Math.floor(Math.random()*16)];
+    }
+    return color;
+}
 
-});
+function getGridSize() {
+    let input = prompt("please enter the number of squares for the new grid (max 100): ", "");
+    let size = Number(input);
+    return size;  
+}
+// .firstChild returns null if th enode has no children
+function clearScreen() {    
+    while (container.firstChild) {
+        container.removeChild(container.firstChild);
+    }
+}
+
+function isNumber(value) {
+    return typeof value === 'number' && !isNaN(value);
+}
+
+function runProgram() {
+    createGrid(16, 16);
+    // createGrid(2, 2);
+}
+
+function checkContainerHaveChildren() {
+    if (container.firstChild) {
+        console.log(container.childElementCount);
+        for (const child of container.children) {
+            console.log(child.tagName);
+        }
+    }
+}
+
+runProgram();
+
 
 
 
